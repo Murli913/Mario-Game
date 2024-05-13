@@ -1,0 +1,59 @@
+version: '3'
+services:
+  mysql:
+    container_name: database
+    image: mysql:latest
+    restart: always
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=mario
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - networkmysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  frontend:
+    container_name: mario-front
+    build:
+      context: ./mario-frontend
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    networks:
+      - networkmysql
+
+  backend:
+    container_name: mario-back
+    build:
+      context: ./mario-back
+      dockerfile: Dockerfile
+    ports:
+      - '8081:8081'
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_DB_NAME=mario
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    networks:
+      - networkmysql
+    depends_on:
+      - mysql
+    restart: on-failure:3
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  networkmysql:
+volumes:
+  mysql_data:
