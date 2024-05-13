@@ -1,1 +1,11 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Pull Docker front image from Docker Hub
+      shell: docker pull murli9131/mario_frontend:latest
 
+    - name: Pull Docker backend image from Docker Hub
+      shell: docker pull murli9131/mario_backend:latest
+
+    - name: Pull Docker mysql image from Docker Hub
+      shell: docker pull murli9131/mysql:latest
