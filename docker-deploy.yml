@@ -9,3 +9,12 @@
 
     - name: Pull Docker mysql image from Docker Hub
       shell: docker pull murli9131/mysql:latest
+
+      - name: Run Docker container for front
+      shell: docker run -d -p 3000:3000 murli9131/mario_fronted:latest
+
+       - name: Run Docker container for backend
+      shell: docker run -d -p 8081:8081 murli9131/mario_backend:latest
+      
+       - name: Run Docker container for mysql
+      shell: docker run -d -p 3306:3306 murli9131/mysql:latest
