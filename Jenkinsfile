@@ -22,6 +22,14 @@ pipeline {
                 git 'https://github.com/Murli913/Mario-Game.git'
             }
         }
+        stage('Making Port Avaiable') {
+            steps {
+                script {
+                    // Stop all containers
+                    sh 'docker stop $(docker ps -aq)'
+                }
+            }
+        }
         
         stage('Maven Build') {
             steps {
