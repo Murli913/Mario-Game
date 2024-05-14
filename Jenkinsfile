@@ -47,7 +47,7 @@ pipeline {
             sh ''' 
             $SCANNER_HOME/bin/sonar-scanner 
             -Dsonar.projectName=Mario \
-            -Dsonar.projectKey=Mario 
+            -Dsonar.projectKey=Mario \
             -Dsonar.exclusions=**/*.java
             '''
         }
