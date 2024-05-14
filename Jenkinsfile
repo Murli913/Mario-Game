@@ -5,10 +5,10 @@ pipeline {
         DOCKER_HUB_USERNAME = 'murli9131'
     }
     
-    // tools
-    // {
-    //  maven 'maven'
-    // }
+    tools
+    {
+     maven 'maven'
+    }
     
     stages{
         stage('clean workspace'){
