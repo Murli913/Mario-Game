@@ -33,14 +33,14 @@ pipeline {
                 }
             }
         }
-        // stage("Sonarqube Analysis "){
-        //     steps{
-        //         withSonarQubeEnv('sonar-server') {
-        //             sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Mario \
-        //             -Dsonar.projectKey=Mario '''
-        //         }
-        //     }
-        // }
+        stage("Sonarqube Analysis "){
+            steps{
+                withSonarQubeEnv('sonar-server') {
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Mario1 \
+                    -Dsonar.projectKey=Mario1 '''
+                }
+            }
+        }
 //         stage("Sonarqube Analysis") {
 //     steps {
 //         withSonarQubeEnv('sonar-server') {
