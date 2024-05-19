@@ -40,39 +40,7 @@ pipeline {
             }
               }
         }
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('sonar-server') {
-                    sh ''' 
-                        $SCANNER_HOME/bin/sonar-scanner \
-                        -Dsonar.projectName=Mario1 \
-                        -Dsonar.projectKey=Mario1 \
-                        -Dsonar.java.binaries=target/classes
-                    '''
-                }
-            }
-        }
-//         stage("Sonarqube Analysis") {
-//     steps {
-//         withSonarQubeEnv('sonar-server') {
-//             sh ''' 
-//             $SCANNER_HOME/bin/sonar-scanner 
-//             -Dsonar.projectName=Mario \
-//             -Dsonar.projectKey=Mario \
-//             -Dsonar.exclusions=**/*.java
-//             '''
-//         }
-//     }
-// }
-
-        // stage("quality gate"){
-        //    steps {
-        //         script {
-        //             waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-token' 
-        //         }
-        //     } 
-        // }
-        
+       
         stage('Maven Build') {
             steps {
                 dir('mario-back') {
