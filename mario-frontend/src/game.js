@@ -1,4 +1,4 @@
-/*global kaboom, loadRoot, loadSprite, scene, layers, addLevel, add, text, pos, width, height, vec2, sprite, solid, body, action, destroy, go, camPos, keyPress, keyDown, scale, layer, dt, start, rgb, mouseIsClicked, localStorage*/
+/*global kaboom, loadRoot, loadSprite, loadSound,scene, layers, addLevel, add, text, pos, width, height, vec2, sprite, solid, body, action, destroy, go, camPos, keyPress, keyDown, scale, layer, dt, start, rgb, mouseIsClicked, localStorage*/
 kaboom({
     global: true,
     fullscreen: true,
@@ -22,8 +22,9 @@ kaboom({
   
   // Ask for username
   username = prompt("Enter your username:");
-  
+
   loadRoot('https://i.imgur.com/');
+
   loadSprite('coin', 'wbKxhcd.png');
   loadSprite('evil-shroom', 'KPO3fR9.png');
   loadSprite('brick', 'pogC9x5.png');
@@ -42,9 +43,13 @@ kaboom({
   loadSprite('blue-steel', 'gqVoI2b.png');
   loadSprite('blue-evil-shroom', 'SvV4ueD.png');
   loadSprite('blue-surprise', 'RMqCc1G.png');
+
+  
   
   scene('game', ({ level, score }) => {
     layers(['bg', 'obj', 'ui'], 'obj');
+      
+
   
     const maps = [
       [
@@ -258,7 +263,7 @@ kaboom({
     });
   });
 
-    async function saveUser(username, score) {
+    export async function saveUser(username, score) {
     const data = { username, score };
     console.log('test function');
     const response = await fetch('http://localhost:8081/saveUser', {
