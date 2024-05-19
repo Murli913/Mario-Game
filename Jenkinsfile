@@ -33,6 +33,11 @@ pipeline {
                 }
             }
         }
+          stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
         stage("Sonarqube Analysis "){
             steps{
                 withSonarQubeEnv('sonar-server') {
