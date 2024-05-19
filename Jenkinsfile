@@ -33,14 +33,8 @@ pipeline {
                 }
             }
         }
-          stage('Build') {
-              dir('mario-back') {
-            steps {
-                sh 'mvn clean package'
-            }
-              }
-        }
-       
+    
+        
         stage('Maven Build') {
             steps {
                 dir('mario-back') {
@@ -51,7 +45,7 @@ pipeline {
             }
           }
           
-         stage('Test'){
+         stage('Backend-testing'){
             steps{
               dir('mario-back') {
                 script{
@@ -61,7 +55,30 @@ pipeline {
             }
         }
         
-        stage('Docker Build and Run') {
+         stage('Dependency Installation for Frontend'){
+            steps{
+              dir('mario-frontend') {
+                script{
+                    sh 'npm install --save-dev jest-environment-jsdom --force'
+                    sh 'npm install --save-dev jest@latest ts-jest@latest --force'
+                    sh 'npm install -g ts-jest --force'
+                  
+                }
+                }
+            }
+        }
+         stage('Frontend-testing'){
+            steps{
+              dir('mario-frontend/src') {
+                script{
+               
+                    sh 'npx jest game.spec.js --testEnvironment jsdom'
+                }
+                }
+            }
+        }
+        
+        stage('Docker Build and Run using docker compose') {
             steps {
                 script {
                    
@@ -117,7 +134,7 @@ pipeline {
             }
         }
         
-        stage('Pull Docker Image of Nodes') {
+        stage('Pull Docker Image of Nodes using ansible') {
             steps {
                 ansiblePlaybook becomeUser: null, colorized: true, disableHostKeyChecking: true, inventory: './inventory',
                 playbook: './docker-deploy.yml', sudoUser: null, vaultTmpPath: ''
