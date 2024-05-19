@@ -34,9 +34,11 @@ pipeline {
             }
         }
           stage('Build') {
+              dir('mario-back') {
             steps {
                 sh 'mvn clean package'
             }
+              }
         }
         stage('SonarQube Analysis') {
             steps {
