@@ -1,4 +1,6 @@
+
 /*global kaboom, loadRoot, loadSprite, loadSound,scene, layers, addLevel, add, text, pos, width, height, vec2, sprite, solid, body, action, destroy, go, camPos, keyPress, keyDown, scale, layer, dt, start, rgb, mouseIsClicked, localStorage*/
+
 kaboom({
     global: true,
     fullscreen: true,
@@ -263,18 +265,28 @@ kaboom({
     });
   });
 
-    export async function saveUser(username, score) {
-    const data = { username, score };
-    console.log('test function');
+  // game.js
+
+async function saveUser(username, score) {
+  try {
     const response = await fetch('http://localhost:8081/saveUser', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, score }),
     });
-    return await response.json();
+    // Handle response if necessary
+    return response.json(); // Return the parsed JSON response
+  } catch (error) {
+    console.error('Error saving user:', error);
+    throw error; // Rethrow the error for handling in the calling code
+  }
 }
+
+module.exports = { saveUser };
+
+
   
   scene('lose', ({ score }) => {
     add([text(score, 32), origin('center'), pos(width() / 2, height() / 2)]);
@@ -335,6 +347,9 @@ kaboom({
       layer('ui'),
     ]);
   });
+
+
+  
   console.log("test usrname ",username);
   console.log("test score")
   start('game', { level: 0, score: 0 });
