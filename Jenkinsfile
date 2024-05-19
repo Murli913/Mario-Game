@@ -38,11 +38,15 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        stage("Sonarqube Analysis "){
-            steps{
+        stage('SonarQube Analysis') {
+            steps {
                 withSonarQubeEnv('sonar-server') {
-                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Mario1 \
-                    -Dsonar.projectKey=Mario1 '''
+                    sh ''' 
+                        $SCANNER_HOME/bin/sonar-scanner \
+                        -Dsonar.projectName=Mario1 \
+                        -Dsonar.projectKey=Mario1 \
+                        -Dsonar.java.binaries=target/classes
+                    '''
                 }
             }
         }
