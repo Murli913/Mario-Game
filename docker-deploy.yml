@@ -35,10 +35,10 @@
           - "8082:8082"
         state: started
 
-    # - name: Run Docker container for mysql
-    #   docker_container:
-    #     name: mysql
-    #     image: murli9131/mysql:latest
-    #     ports:
-    #       - "3306:3306"
-    #     state: started
+    - name: Run Docker container for mysql
+      docker_container:
+        name: mysql
+        image: murli9131/mysql:latest
+        ports:
+          - "3306:3306"
+        state: started
