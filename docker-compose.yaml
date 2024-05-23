@@ -25,7 +25,7 @@ services:
       context: ./mario-frontend
       dockerfile: Dockerfile
     ports:
-      - '3000:3000'
+      - '3001:3001'
     networks:
       - networkmysql
 
@@ -35,7 +35,7 @@ services:
       context: ./mario-back
       dockerfile: Dockerfile
     ports:
-      - '8081:8081'
+      - '8082:8082'
     environment:
       - MYSQL_HOST=mysql
       - MYSQL_PORT=3306
