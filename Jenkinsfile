@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        // Define Docker Hub username
+       
         DOCKER_HUB_USERNAME = 'murli9131'
         SCANNER_HOME=tool 'sonar-scanner'
     }
