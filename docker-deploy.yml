@@ -32,13 +32,13 @@
         name: mario_backend
         image: murli9131/mario_backend:latest
         ports:
-          - "8082:8082"
+          - "8083:8083"
         state: started
 
-    - name: Run Docker container for mysql
-      docker_container:
-        name: mysql
-        image: murli9131/mysql:latest
-        ports:
-          - "3306:3306"
-        state: started
+    # - name: Run Docker container for mysql
+    #   docker_container:
+    #     name: mysql
+    #     image: murli9131/mysql:latest
+    #     ports:
+    #       - "3306:3306"
+    #     state: started
