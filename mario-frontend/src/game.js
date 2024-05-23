@@ -269,7 +269,7 @@ kaboom({
 
 async function saveUser(username, score) {
   try {
-    const response = await fetch('http://localhost:8081/saveUser', {
+    const response = await fetch('http://localhost:8082/saveUser', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
