@@ -96,7 +96,7 @@ pipeline {
         stage('List Docker Images') {
             steps {
                 script {
-                    // Use Docker CLI to list images
+                   
                     sh 'docker images'
                 }
             }
