@@ -2,19 +2,43 @@
 - hosts: localhost
   tasks:
     - name: Pull Docker front image from Docker Hub
-      shell: docker pull murli9131/mario_frontend:latest
+      docker_image:
+        name: murli9131/mario_frontend
+        tag: latest
+        source: pull
 
     - name: Pull Docker backend image from Docker Hub
-      shell: docker pull murli9131/mario_backend:latest
+      docker_image:
+        name: murli9131/mario_backend
+        tag: latest
+        source: pull
 
     - name: Pull Docker mysql image from Docker Hub
-      shell: docker pull murli9131/mysql:latest
+      docker_image:
+        name: murli9131/mysql
+        tag: latest
+        source: pull
 
-    # - name: Run Docker container for front
-    #   shell: docker run -d -p 3001:3001 murli9131/mario_fronted:latest
+    - name: Run Docker container for front
+      docker_container:
+        name: mario_frontend
+        image: murli9131/mario_frontend:latest
+        ports:
+          - "3001:3001"
+        state: started
 
-    # - name: Run Docker container for backend
-    #   shell: docker run -d -p 8081:8081 murli9131/mario_backend:latest
-      
+    - name: Run Docker container for backend
+      docker_container:
+        name: mario_backend
+        image: murli9131/mario_backend:latest
+        ports:
+          - "8083:8083"
+        state: started
+
     # - name: Run Docker container for mysql
-    #   shell: docker run -d -p 3306:3306 murli9131/mysql:latest
+    #   docker_container:
+    #     name: mysql
+    #     image: murli9131/mysql:latest
+    #     ports:
+    #       - "3306:3306"
+    #     state: started
