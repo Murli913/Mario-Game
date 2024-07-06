@@ -1,6 +1,7 @@
 Mario-Game
 
 Overview of Mario-Game
+
 This project is a browser-based 2D platformer game developed using the Kaboom.js game development 
 library. It combines classic platforming elements with a few unique features, such as dynamic level 
 progression and player state management. The game features multiple levels, each with its own layout 
@@ -15,24 +16,18 @@ Several assets are loaded from an external source, including sprites for the pla
 various level elements. The game scene is constructed using a series of predefined maps, each 
 represented as a string array where different characters correspond to specific game objects, such as 
 blocks, coins, and enemies. These maps are used to generate the level layout dynamically.
-The player character has a variety of interactions within the game, including collecting coins, hitting 
-surprise blocks that can release coins or power-ups, and colliding with enemies. The player can grow in 
-size by collecting mushrooms, which temporarily increases their jump force and scale. The game 
-incorporates enemy movement and collision detection, making the gameplay challenging and engaging.
-The game also features a transition system where completing a level by reaching a pipe at the end leads 
-the player to the next level. The camera follows the player character, ensuring the player remains the 
-focal point. If the player falls off the screen or collides with an enemy without jumping on them, they 
-lose the game.
+
+
 
 
 Mario-Game Features
 
 Here are some key features you might want to consider implementing to enhance the gameplay and overall 
 experience:
-1. Multiple Levels: Currently, you have defined different maps for different levels. You 
+1. Multiple Levels:  Currently, you have defined different maps for different levels. You 
 can expand on this by adding more levels with increasing difficulty, new obstacles, 
 enemies, and surprises.
-2. Enemy Behavior: Enhance enemy behavior to make them more challenging. You can 
+2. Enemy Behavior:  Enhance enemy behavior to make them more challenging. You can 
 introduce different types of enemies with unique movement patterns, abilities, and 
 weaknesses. Additionally, consider implementing boss battles at the end of each level for 
 an added challenge.
@@ -42,6 +37,7 @@ bonus levels, cosmetic upgrades for the player character, or access to secret ar
 4. Achievements and Challenges: Add achievement systems with various challenges 
 and objectives for players to complete. Reward players with unique rewards or 
 recognition for accomplishing these achievements
+
 
 DEVOPS Features
 
@@ -66,6 +62,8 @@ Pipeline:
 
 
 Levels:
+
+
 <img width="523" alt="image" src="https://github.com/Murli913/Mario-Game/assets/141387276/ca437268-c92d-499a-b41c-d66bac6a24b0">
 
 Grafana:
